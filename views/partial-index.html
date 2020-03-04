@@ -1,0 +1,5 @@
+<ul>
+    ${booksData.map(book => `
+        <li><a href="./${book.id}">${book.title}</a></li>
+        `).join('')}
+</ul>

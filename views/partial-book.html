@@ -1,0 +1,24 @@
+<h3>Title: ${bookData[0].title}</h3>
+<p>Author: ${bookData[0].author} - ISBN: ${bookData[0].isbn} - No. Pages: ${bookData[0].number_of_pages}</p>
+<h4>Description</h4>
+<p>${bookData[0].discription}</p>
+<hr>
+
+<h3>Reviews</h3>
+${bookReviews.map(review => `
+    <h4>${review.review_title}</h4>
+    <p>${review.review}</p>
+    `)}
+   
+<form action="/" method="POST">
+    <input type="hidden" value=${bookData[0].id} name="book_id"/>
+    <label> Title
+        <input type="text" name="title_field" placeholder="Review Title"/>
+    </label>
+    <label>Review
+        <textarea name="review_field" placeholder="Interesting review here..."></textarea>
+    </label>
+    <button type="submit">Submit Review</button>
+</form>
+    
+<a href="/">Home</a>
