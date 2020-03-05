@@ -6,21 +6,26 @@ const router = express.Router();
 router.post("/signup", async function(req, res, next) {
     const { firstName, lastName, email, password } = req.body;
     const name = firstName + ' ' + lastName;
-    const hash = password;
+    
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+    console.log(password, hash);
+
     const user = new userModel(null, name, email, hash);
     user.addUser();
-    res.sendStatus(200);
+    res.status(200).redirect('/');
 });
 
 router.post("/login", async function(req, res, next) {
     const { email, password } = req.body;
 
-
+    const user = new userModel(null, null, email, password);
+    user.logInUser();
 
     res.sendStatus(200);
 });
 
-router.get("/:signup", async function(req, res) {
+router.get("/signup", async function(req, res) {
     res.render("template", {
         locals: {
             title: "signup"
@@ -31,7 +36,7 @@ router.get("/:signup", async function(req, res) {
     });
 });
 
-router.get("/", async function(req, res) {
+router.get("/login", async function(req, res) {
     res.render("template", {
         locals: {
             title: "login"
