@@ -6,6 +6,8 @@ const logger = require('morgan');
 const es6Renderer = require('express-es6-template-engine');
 
 const indexRouter = require('./routes/index');
+const userRouter = require('./routes/users');
+const bookRouter = require('./routes/books');
 
 const app = express();
 
@@ -22,6 +24,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/users', userRouter);
+app.use('/books', bookRouter);
 
 
 // catch 404 and forward to error handler
