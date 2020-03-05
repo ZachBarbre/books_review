@@ -1,8 +1,6 @@
 const options = {
-    host: 'drona.db.elephantsql.com',
-    user: 'wgnqysjn',
-    password: 'oUAeEXNZcdX8-wJL_qxRh2i031SMh_7h',
-    database: 'wgnqysjn'
+    host: 'localhost',
+    database: 'books'
 }
 
 const pgp = require('pg-promise')({

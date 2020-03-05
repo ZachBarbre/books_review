@@ -1,5 +1,8 @@
 <ul>
     ${booksData.map(book => `
-        <li><a href="./${book.id}">${book.title}</a></li>
+        <li><a href="/books/${book.id}">${book.title}</a></li>
         `).join('')}
 </ul>
+
+<a href="/users">Login</a>
+<a href="/users/signup">Sign Up</a>

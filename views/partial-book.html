@@ -8,9 +8,9 @@
 ${bookReviews.map(review => `
     <h4>${review.review_title}</h4>
     <p>${review.review}</p>
-    `)}
+    `).join('')}
    
-<form action="/" method="POST">
+<form action="/books" method="POST">
     <input type="hidden" value=${bookData[0].id} name="book_id"/>
     <label> Title
         <input type="text" name="title_field" placeholder="Review Title"/>

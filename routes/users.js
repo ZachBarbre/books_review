@@ -1,21 +1,21 @@
 const express = require("express"); 
+const userModel = require("../models/usersModel");
+const bcrypt = require('bcryptjs');
 const router = express.Router();
-const booksdb = require("../models/bookModel");
 
-
-router.post("/signup", async function(req, res) {
+router.post("/signup", async function(req, res, next) {
     const { firstName, lastName, email, password } = req.body;
     const name = firstName + ' ' + lastName;
-
-    const userData = booksdb.AddUser(name, email, password);
-
+    const hash = password;
+    const user = new userModel(null, name, email, hash);
+    user.addUser();
     res.sendStatus(200);
 });
 
-router.post("/login", async function(req, res) {
+router.post("/login", async function(req, res, next) {
     const { email, password } = req.body;
 
-    const userData = booksdb.LoginUser(email, password);
+
 
     res.sendStatus(200);
 });
