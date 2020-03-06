@@ -30,9 +30,12 @@ class User {
             console.log(response);
             const isValid = this.checkPassword(response.password);
             if (!!isValid){
-                console.log('login success', isValid);
+                const { id, user_name } = response;
+                console.log(isValid);
+                return { isValid, id, user_name };
             }else{
-                console.log('go away', isValid);
+                console.log(isValid);
+                return { isValid };
             }
         } catch (err) {
             console.log('error: ', err)

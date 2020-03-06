@@ -20,9 +20,17 @@ router.post("/login", async function(req, res, next) {
     const { email, password } = req.body;
 
     const user = new userModel(null, null, email, password);
-    user.logInUser();
+    const loginResponse = await user.logInUser();
+    console.log(loginResponse);
+    if (!!loginResponse.isValid){
+        req.session.is_logged_in = loginResponse.isValid;
+        req.session.user_id = loginResponse.id;
+        req.session.user_name = loginResponse.user_name
+        res.status(200).redirect('/');
+    }else {
+        res.sendStatus(403);
+    }
 
-    res.sendStatus(200);
 });
 
 router.get("/signup", async function(req, res) {
